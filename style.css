@@ -1,0 +1,217 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+html {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* ---------------------------
+   CLEAN, CONSISTENT COLOR SYSTEM
+---------------------------- */
+
+:root {
+    --bg-color: #ffffff;
+    --primary-text-color: #000;
+
+    --todo-color: #0000ff50;
+    --progress-color: #ff000050;
+    --done-color: #00ff6a50;
+
+    --task-bg: transperent;
+    --task-text: #000;
+
+    --delete-color: #d62828;
+    --modal-bg: rgba(0, 0, 0, 0.5);
+
+    /* paddings */
+    --nav-padding: 15px 30px;
+    --section-padding: 15px 30px;
+
+    --padding-s: 5px;
+    --padding-m: 10px;
+    --padding-l: 15px;
+    --padding-xl: 20px;
+    --padding-xxl: 30px;
+
+    /* border radius */
+    --radius-s: 5px;
+    --radius-m: 10px;
+    --radius-l: 15px;
+    --radius-xl: 20px;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--primary-text-color);
+    background-image: url("/background.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    backdrop-filter: blur(15px);
+}
+
+/* ---------------------------
+   LAYOUT
+---------------------------- */
+
+main {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+nav {
+    padding: var(--nav-padding);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+nav .left{
+    font-size: 15px;
+    font-weight: bold;
+}
+
+nav button {
+    background-color: transparent;
+    color: rgb(0, 0, 0);
+    padding: var(--padding-m) var(--padding-l);
+    border-radius: var(--radius-m);
+    border: 1px solid rgba(0, 0, 0, 0.301);
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+}
+
+nav button:hover{
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.185);
+}
+
+/* ---------------------------
+   COLUMNS
+---------------------------- */
+
+section {
+    padding: var(--section-padding);
+    display: flex;
+    justify-content: space-between;
+    flex-grow: 1;
+    gap: var(--padding-xxl);
+}
+
+#todo {
+    background-color: var(--todo-color);
+    box-shadow: 2px 2px 14px rgba(0, 0, 0, 0.555);
+    border: 1px solid rgba(255, 255, 255, 0.26);
+}
+
+#progress {
+    background-color: var(--progress-color);
+    box-shadow: 2px 2px 14px rgba(0, 0, 0, 0.555);
+    border: 1px solid rgba(255, 255, 255, 0.26);
+}
+
+#done {
+    background-color: var(--done-color);
+    box-shadow: 2px 2px 14px rgba(0, 0, 0, 0.555);
+    border: 1px solid rgba(255, 255, 255, 0.26);
+}
+
+.task-column {
+    flex-grow: 1;
+    padding: var(--padding-l);
+    display: flex;
+    flex-direction: column;
+    gap: var(--padding-m);
+    border-radius: var(--radius-m);
+    transition: 0.25s ease;
+}
+
+.task-column.hover-over {
+    border: 2px dashed white;
+    scale: 1.03;
+}
+
+.heading {
+    display: flex;
+    justify-content: space-between;
+    color: rgb(0, 0, 0);
+}
+
+/* ---------------------------
+   TASK CARD
+---------------------------- */
+
+.task {
+    background-color: var(--task-bg);
+    padding: var(--padding-m);
+    border-radius: var(--radius-m);
+    display: flex;
+    flex-direction: column;
+    cursor: grab;
+    color: var(--task-text);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+    border: 1px solid rgba(255, 255, 255, 0.219);
+}
+
+.task button {
+    align-self: flex-end;
+    background-color: var(--delete-color);
+    color: white;
+    border: none;
+    padding: var(--padding-s) var(--padding-m);
+    border-radius: var(--radius-s);
+    cursor: pointer;
+}
+
+/* ---------------------------
+   MODAL
+---------------------------- */
+
+.modal {
+    position: fixed;
+    inset: 0;
+    background-color: var(--modal-bg);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px);
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal .center {
+    background-color: white;
+    padding: var(--padding-xxl);
+    border-radius: var(--radius-m);
+    display: flex;
+    flex-direction: column;
+    gap: var(--padding-m);
+    width: 350px;
+}
+
+.modal .center input,
+.modal .center textarea {
+    background-color: #f0f0f0;
+    border: none;
+    padding: var(--padding-m);
+    border-radius: var(--radius-s);
+}
+
+.modal .center button {
+    background-color: var(--delete-color);
+    color: white;
+    padding: var(--padding-m);
+    border-radius: var(--radius-s);
+    border: none;
+    cursor: pointer;
+}
